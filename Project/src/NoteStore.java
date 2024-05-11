@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class NoteStore {
     private List<Note> notes;
@@ -26,6 +28,28 @@ public class NoteStore {
                 System.out.println("Content: " + note.getContent());
                 System.out.println("----------------------");
             }
+        }
+    }
+
+    // Method to delete a note by ID
+    public void deleteNoteById() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the note ID to delete: ");
+        String id = scanner.nextLine();
+
+        boolean found = false;
+        for (Note note : notes) {
+            if (Objects.equals(note.getId(), id)) {
+                notes.remove(note);
+                System.out.println("Note with ID " + id + " deleted.");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Note with ID " + id + " not found.");
         }
     }
 }
